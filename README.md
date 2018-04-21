@@ -1,4 +1,4 @@
-## Events
+## Flux
 
 A unidirectional data flow for iOS & macOS.
 
