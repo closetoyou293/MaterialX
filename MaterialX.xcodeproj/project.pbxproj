@@ -7,16 +7,16 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		964E0B61208B9281001328FF /* Flux.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 964E0B57208B9280001328FF /* Flux.framework */; };
-		964E0B79208B9371001328FF /* FluxTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 964E0B77208B9371001328FF /* FluxTests.swift */; };
-		965BBDBA208B958200AC4ED5 /* Flux.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 965BBDB1208B958100AC4ED5 /* Flux.framework */; };
-		965BBE0B208B9A1200AC4ED5 /* Flux.swift in Sources */ = {isa = PBXBuildFile; fileRef = 965BBE0A208B9A1200AC4ED5 /* Flux.swift */; };
-		965BBE0C208B9A1200AC4ED5 /* Flux.swift in Sources */ = {isa = PBXBuildFile; fileRef = 965BBE0A208B9A1200AC4ED5 /* Flux.swift */; };
+		964E0B61208B9281001328FF /* MaterialX.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 964E0B57208B9280001328FF /* MaterialX.framework */; };
+		964E0B79208B9371001328FF /* MaterialXTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 964E0B77208B9371001328FF /* MaterialXTests.swift */; };
+		965BBDBA208B958200AC4ED5 /* MaterialX.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 965BBDB1208B958100AC4ED5 /* MaterialX.framework */; };
+		965BBE0B208B9A1200AC4ED5 /* MaterialX.swift in Sources */ = {isa = PBXBuildFile; fileRef = 965BBE0A208B9A1200AC4ED5 /* MaterialX.swift */; };
+		965BBE0C208B9A1200AC4ED5 /* MaterialX.swift in Sources */ = {isa = PBXBuildFile; fileRef = 965BBE0A208B9A1200AC4ED5 /* MaterialX.swift */; };
 		965BBE0E208B9B1D00AC4ED5 /* JSON.swift in Sources */ = {isa = PBXBuildFile; fileRef = 965BBE0D208B9B1D00AC4ED5 /* JSON.swift */; };
 		965BBE0F208B9B1D00AC4ED5 /* JSON.swift in Sources */ = {isa = PBXBuildFile; fileRef = 965BBE0D208B9B1D00AC4ED5 /* JSON.swift */; };
-		965BBE10208B9C5100AC4ED5 /* Flux.h in Headers */ = {isa = PBXBuildFile; fileRef = 964E0B72208B9364001328FF /* Flux.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		965BBE11208B9C5500AC4ED5 /* Flux.h in Headers */ = {isa = PBXBuildFile; fileRef = 964E0B72208B9364001328FF /* Flux.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		965BBE12208B9C8200AC4ED5 /* Flux.swift in Headers */ = {isa = PBXBuildFile; fileRef = 965BBE0A208B9A1200AC4ED5 /* Flux.swift */; settings = {ATTRIBUTES = (Public, ); }; };
+		965BBE10208B9C5100AC4ED5 /* MaterialX.h in Headers */ = {isa = PBXBuildFile; fileRef = 964E0B72208B9364001328FF /* MaterialX.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		965BBE11208B9C5500AC4ED5 /* MaterialX.h in Headers */ = {isa = PBXBuildFile; fileRef = 964E0B72208B9364001328FF /* MaterialX.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		965BBE12208B9C8200AC4ED5 /* MaterialX.swift in Headers */ = {isa = PBXBuildFile; fileRef = 965BBE0A208B9A1200AC4ED5 /* MaterialX.swift */; settings = {ATTRIBUTES = (Public, ); }; };
 		965BBE13208B9C8200AC4ED5 /* JSON.swift in Headers */ = {isa = PBXBuildFile; fileRef = 965BBE0D208B9B1D00AC4ED5 /* JSON.swift */; settings = {ATTRIBUTES = (Public, ); }; };
 /* End PBXBuildFile section */
 
@@ -38,16 +38,16 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
-		964E0B57208B9280001328FF /* Flux.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Flux.framework; sourceTree = BUILT_PRODUCTS_DIR; };
-		964E0B60208B9281001328FF /* Flux iOS Tests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "Flux iOS Tests.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
-		964E0B72208B9364001328FF /* Flux.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Flux.h; sourceTree = "<group>"; };
+		964E0B57208B9280001328FF /* MaterialX.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = MaterialX.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		964E0B60208B9281001328FF /* MaterialX iOS Tests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "MaterialX iOS Tests.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
+		964E0B72208B9364001328FF /* MaterialX.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MaterialX.h; sourceTree = "<group>"; };
 		964E0B73208B9364001328FF /* Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		964E0B77208B9371001328FF /* FluxTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FluxTests.swift; sourceTree = "<group>"; };
+		964E0B77208B9371001328FF /* MaterialXTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MaterialXTests.swift; sourceTree = "<group>"; };
 		964E0B78208B9371001328FF /* Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		965BBDAB208B955000AC4ED5 /* LICENSE */ = {isa = PBXFileReference; lastKnownFileType = text; path = LICENSE; sourceTree = "<group>"; };
-		965BBDB1208B958100AC4ED5 /* Flux.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Flux.framework; sourceTree = BUILT_PRODUCTS_DIR; };
-		965BBDB9208B958200AC4ED5 /* Flux macOS Tests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "Flux macOS Tests.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
-		965BBE0A208B9A1200AC4ED5 /* Flux.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Flux.swift; sourceTree = "<group>"; };
+		965BBDB1208B958100AC4ED5 /* MaterialX.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = MaterialX.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		965BBDB9208B958200AC4ED5 /* MaterialX macOS Tests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "MaterialX macOS Tests.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
+		965BBE0A208B9A1200AC4ED5 /* MaterialX.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MaterialX.swift; sourceTree = "<group>"; };
 		965BBE0D208B9B1D00AC4ED5 /* JSON.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = JSON.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -63,7 +63,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				964E0B61208B9281001328FF /* Flux.framework in Frameworks */,
+				964E0B61208B9281001328FF /* MaterialX.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -78,7 +78,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				965BBDBA208B958200AC4ED5 /* Flux.framework in Frameworks */,
+				965BBDBA208B958200AC4ED5 /* MaterialX.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -97,10 +97,10 @@
 		964E0B58208B9280001328FF /* Products */ = {
 			isa = PBXGroup;
 			children = (
-				964E0B57208B9280001328FF /* Flux.framework */,
-				964E0B60208B9281001328FF /* Flux iOS Tests.xctest */,
-				965BBDB1208B958100AC4ED5 /* Flux.framework */,
-				965BBDB9208B958200AC4ED5 /* Flux macOS Tests.xctest */,
+				964E0B57208B9280001328FF /* MaterialX.framework */,
+				964E0B60208B9281001328FF /* MaterialX iOS Tests.xctest */,
+				965BBDB1208B958100AC4ED5 /* MaterialX.framework */,
+				965BBDB9208B958200AC4ED5 /* MaterialX macOS Tests.xctest */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -110,8 +110,8 @@
 			children = (
 				965BBDAB208B955000AC4ED5 /* LICENSE */,
 				964E0B73208B9364001328FF /* Info.plist */,
-				964E0B72208B9364001328FF /* Flux.h */,
-				965BBE0A208B9A1200AC4ED5 /* Flux.swift */,
+				964E0B72208B9364001328FF /* MaterialX.h */,
+				965BBE0A208B9A1200AC4ED5 /* MaterialX.swift */,
 				965BBE0D208B9B1D00AC4ED5 /* JSON.swift */,
 			);
 			path = Sources;
@@ -121,7 +121,7 @@
 			isa = PBXGroup;
 			children = (
 				964E0B78208B9371001328FF /* Info.plist */,
-				964E0B77208B9371001328FF /* FluxTests.swift */,
+				964E0B77208B9371001328FF /* MaterialXTests.swift */,
 			);
 			path = Tests;
 			sourceTree = "<group>";
@@ -133,8 +133,8 @@
 			isa = PBXHeadersBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				965BBE11208B9C5500AC4ED5 /* Flux.h in Headers */,
-				965BBE12208B9C8200AC4ED5 /* Flux.swift in Headers */,
+				965BBE11208B9C5500AC4ED5 /* MaterialX.h in Headers */,
+				965BBE12208B9C8200AC4ED5 /* MaterialX.swift in Headers */,
 				965BBE13208B9C8200AC4ED5 /* JSON.swift in Headers */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -143,16 +143,16 @@
 			isa = PBXHeadersBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				965BBE10208B9C5100AC4ED5 /* Flux.h in Headers */,
+				965BBE10208B9C5100AC4ED5 /* MaterialX.h in Headers */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXHeadersBuildPhase section */
 
 /* Begin PBXNativeTarget section */
-		964E0B56208B9280001328FF /* Flux iOS */ = {
+		964E0B56208B9280001328FF /* MaterialX iOS */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = 964E0B6B208B9281001328FF /* Build configuration list for PBXNativeTarget "Flux iOS" */;
+			buildConfigurationList = 964E0B6B208B9281001328FF /* Build configuration list for PBXNativeTarget "MaterialX iOS" */;
 			buildPhases = (
 				964E0B52208B9280001328FF /* Sources */,
 				964E0B53208B9280001328FF /* Frameworks */,
@@ -163,14 +163,14 @@
 			);
 			dependencies = (
 			);
-			name = "Flux iOS";
+			name = "MaterialX iOS";
 			productName = Flux;
-			productReference = 964E0B57208B9280001328FF /* Flux.framework */;
+			productReference = 964E0B57208B9280001328FF /* MaterialX.framework */;
 			productType = "com.apple.product-type.framework";
 		};
-		964E0B5F208B9281001328FF /* Flux iOS Tests */ = {
+		964E0B5F208B9281001328FF /* MaterialX iOS Tests */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = 964E0B6E208B9281001328FF /* Build configuration list for PBXNativeTarget "Flux iOS Tests" */;
+			buildConfigurationList = 964E0B6E208B9281001328FF /* Build configuration list for PBXNativeTarget "MaterialX iOS Tests" */;
 			buildPhases = (
 				964E0B5C208B9281001328FF /* Sources */,
 				964E0B5D208B9281001328FF /* Frameworks */,
@@ -181,14 +181,14 @@
 			dependencies = (
 				964E0B63208B9281001328FF /* PBXTargetDependency */,
 			);
-			name = "Flux iOS Tests";
+			name = "MaterialX iOS Tests";
 			productName = FluxTests;
-			productReference = 964E0B60208B9281001328FF /* Flux iOS Tests.xctest */;
+			productReference = 964E0B60208B9281001328FF /* MaterialX iOS Tests.xctest */;
 			productType = "com.apple.product-type.bundle.unit-test";
 		};
-		965BBDB0208B958100AC4ED5 /* Flux macOS */ = {
+		965BBDB0208B958100AC4ED5 /* MaterialX macOS */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = 965BBDC2208B958200AC4ED5 /* Build configuration list for PBXNativeTarget "Flux macOS" */;
+			buildConfigurationList = 965BBDC2208B958200AC4ED5 /* Build configuration list for PBXNativeTarget "MaterialX macOS" */;
 			buildPhases = (
 				965BBDAC208B958100AC4ED5 /* Sources */,
 				965BBDAD208B958100AC4ED5 /* Frameworks */,
@@ -199,14 +199,14 @@
 			);
 			dependencies = (
 			);
-			name = "Flux macOS";
+			name = "MaterialX macOS";
 			productName = Flux;
-			productReference = 965BBDB1208B958100AC4ED5 /* Flux.framework */;
+			productReference = 965BBDB1208B958100AC4ED5 /* MaterialX.framework */;
 			productType = "com.apple.product-type.framework";
 		};
-		965BBDB8208B958200AC4ED5 /* Flux macOS Tests */ = {
+		965BBDB8208B958200AC4ED5 /* MaterialX macOS Tests */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = 965BBDC5208B958200AC4ED5 /* Build configuration list for PBXNativeTarget "Flux macOS Tests" */;
+			buildConfigurationList = 965BBDC5208B958200AC4ED5 /* Build configuration list for PBXNativeTarget "MaterialX macOS Tests" */;
 			buildPhases = (
 				965BBDB5208B958200AC4ED5 /* Sources */,
 				965BBDB6208B958200AC4ED5 /* Frameworks */,
@@ -217,9 +217,9 @@
 			dependencies = (
 				965BBDBC208B958200AC4ED5 /* PBXTargetDependency */,
 			);
-			name = "Flux macOS Tests";
+			name = "MaterialX macOS Tests";
 			productName = FluxTests;
-			productReference = 965BBDB9208B958200AC4ED5 /* Flux macOS Tests.xctest */;
+			productReference = 965BBDB9208B958200AC4ED5 /* MaterialX macOS Tests.xctest */;
 			productType = "com.apple.product-type.bundle.unit-test";
 		};
 /* End PBXNativeTarget section */
@@ -252,7 +252,7 @@
 					};
 				};
 			};
-			buildConfigurationList = 964E0B51208B9280001328FF /* Build configuration list for PBXProject "Flux" */;
+			buildConfigurationList = 964E0B51208B9280001328FF /* Build configuration list for PBXProject "MaterialX" */;
 			compatibilityVersion = "Xcode 8.0";
 			developmentRegion = en;
 			hasScannedForEncodings = 0;
@@ -264,10 +264,10 @@
 			projectDirPath = "";
 			projectRoot = "";
 			targets = (
-				964E0B56208B9280001328FF /* Flux iOS */,
-				965BBDB0208B958100AC4ED5 /* Flux macOS */,
-				964E0B5F208B9281001328FF /* Flux iOS Tests */,
-				965BBDB8208B958200AC4ED5 /* Flux macOS Tests */,
+				964E0B56208B9280001328FF /* MaterialX iOS */,
+				965BBDB0208B958100AC4ED5 /* MaterialX macOS */,
+				964E0B5F208B9281001328FF /* MaterialX iOS Tests */,
+				965BBDB8208B958200AC4ED5 /* MaterialX macOS Tests */,
 			);
 		};
 /* End PBXProject section */
@@ -308,7 +308,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				965BBE0B208B9A1200AC4ED5 /* Flux.swift in Sources */,
+				965BBE0B208B9A1200AC4ED5 /* MaterialX.swift in Sources */,
 				965BBE0E208B9B1D00AC4ED5 /* JSON.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -317,7 +317,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				964E0B79208B9371001328FF /* FluxTests.swift in Sources */,
+				964E0B79208B9371001328FF /* MaterialXTests.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -325,7 +325,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				965BBE0C208B9A1200AC4ED5 /* Flux.swift in Sources */,
+				965BBE0C208B9A1200AC4ED5 /* MaterialX.swift in Sources */,
 				965BBE0F208B9B1D00AC4ED5 /* JSON.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -342,12 +342,12 @@
 /* Begin PBXTargetDependency section */
 		964E0B63208B9281001328FF /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
-			target = 964E0B56208B9280001328FF /* Flux iOS */;
+			target = 964E0B56208B9280001328FF /* MaterialX iOS */;
 			targetProxy = 964E0B62208B9281001328FF /* PBXContainerItemProxy */;
 		};
 		965BBDBC208B958200AC4ED5 /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
-			target = 965BBDB0208B958100AC4ED5 /* Flux macOS */;
+			target = 965BBDB0208B958100AC4ED5 /* MaterialX macOS */;
 			targetProxy = 965BBDBB208B958200AC4ED5 /* PBXContainerItemProxy */;
 		};
 /* End PBXTargetDependency section */
@@ -481,7 +481,7 @@
 				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.cosmicmind.Flux;
-				PRODUCT_NAME = Flux;
+				PRODUCT_NAME = MaterialX;
 				SKIP_INSTALL = YES;
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 				SWIFT_VERSION = 4.0;
@@ -504,7 +504,7 @@
 				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.cosmicmind.Flux;
-				PRODUCT_NAME = Flux;
+				PRODUCT_NAME = MaterialX;
 				SKIP_INSTALL = YES;
 				SWIFT_VERSION = 4.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
@@ -558,7 +558,7 @@
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/../Frameworks @loader_path/Frameworks";
 				MACOSX_DEPLOYMENT_TARGET = 10.13;
 				PRODUCT_BUNDLE_IDENTIFIER = com.cosmicmind.Flux;
-				PRODUCT_NAME = Flux;
+				PRODUCT_NAME = MaterialX;
 				SDKROOT = macosx;
 				SKIP_INSTALL = YES;
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
@@ -583,7 +583,7 @@
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/../Frameworks @loader_path/Frameworks";
 				MACOSX_DEPLOYMENT_TARGET = 10.13;
 				PRODUCT_BUNDLE_IDENTIFIER = com.cosmicmind.Flux;
-				PRODUCT_NAME = Flux;
+				PRODUCT_NAME = MaterialX;
 				SDKROOT = macosx;
 				SKIP_INSTALL = YES;
 				SWIFT_VERSION = 4.0;
@@ -627,7 +627,7 @@
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
-		964E0B51208B9280001328FF /* Build configuration list for PBXProject "Flux" */ = {
+		964E0B51208B9280001328FF /* Build configuration list for PBXProject "MaterialX" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				964E0B69208B9281001328FF /* Debug */,
@@ -636,7 +636,7 @@
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		964E0B6B208B9281001328FF /* Build configuration list for PBXNativeTarget "Flux iOS" */ = {
+		964E0B6B208B9281001328FF /* Build configuration list for PBXNativeTarget "MaterialX iOS" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				964E0B6C208B9281001328FF /* Debug */,
@@ -645,7 +645,7 @@
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		964E0B6E208B9281001328FF /* Build configuration list for PBXNativeTarget "Flux iOS Tests" */ = {
+		964E0B6E208B9281001328FF /* Build configuration list for PBXNativeTarget "MaterialX iOS Tests" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				964E0B6F208B9281001328FF /* Debug */,
@@ -654,7 +654,7 @@
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		965BBDC2208B958200AC4ED5 /* Build configuration list for PBXNativeTarget "Flux macOS" */ = {
+		965BBDC2208B958200AC4ED5 /* Build configuration list for PBXNativeTarget "MaterialX macOS" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				965BBDC3208B958200AC4ED5 /* Debug */,
@@ -663,7 +663,7 @@
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		965BBDC5208B958200AC4ED5 /* Build configuration list for PBXNativeTarget "Flux macOS Tests" */ = {
+		965BBDC5208B958200AC4ED5 /* Build configuration list for PBXNativeTarget "MaterialX macOS Tests" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				965BBDC6208B958200AC4ED5 /* Debug */,

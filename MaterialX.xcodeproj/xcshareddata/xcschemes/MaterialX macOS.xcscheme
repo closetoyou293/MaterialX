@@ -14,10 +14,10 @@
             buildForAnalyzing = "YES">
             <BuildableReference
                BuildableIdentifier = "primary"
-               BlueprintIdentifier = "964E0B56208B9280001328FF"
-               BuildableName = "Flux.framework"
-               BlueprintName = "Flux iOS"
-               ReferencedContainer = "container:Flux.xcodeproj">
+               BlueprintIdentifier = "965BBDB0208B958100AC4ED5"
+               BuildableName = "MaterialX.framework"
+               BlueprintName = "MaterialX macOS"
+               ReferencedContainer = "container:MaterialX.xcodeproj">
             </BuildableReference>
          </BuildActionEntry>
       </BuildActionEntries>
@@ -33,20 +33,20 @@
             skipped = "NO">
             <BuildableReference
                BuildableIdentifier = "primary"
-               BlueprintIdentifier = "964E0B5F208B9281001328FF"
-               BuildableName = "Flux iOS Tests.xctest"
-               BlueprintName = "Flux iOS Tests"
-               ReferencedContainer = "container:Flux.xcodeproj">
+               BlueprintIdentifier = "965BBDB8208B958200AC4ED5"
+               BuildableName = "MaterialX macOS Tests.xctest"
+               BlueprintName = "MaterialX macOS Tests"
+               ReferencedContainer = "container:MaterialX.xcodeproj">
             </BuildableReference>
          </TestableReference>
       </Testables>
       <MacroExpansion>
          <BuildableReference
             BuildableIdentifier = "primary"
-            BlueprintIdentifier = "964E0B56208B9280001328FF"
-            BuildableName = "Flux.framework"
-            BlueprintName = "Flux iOS"
-            ReferencedContainer = "container:Flux.xcodeproj">
+            BlueprintIdentifier = "965BBDB0208B958100AC4ED5"
+            BuildableName = "MaterialX.framework"
+            BlueprintName = "MaterialX macOS"
+            ReferencedContainer = "container:MaterialX.xcodeproj">
          </BuildableReference>
       </MacroExpansion>
       <AdditionalOptions>
@@ -66,10 +66,10 @@
       <MacroExpansion>
          <BuildableReference
             BuildableIdentifier = "primary"
-            BlueprintIdentifier = "964E0B56208B9280001328FF"
-            BuildableName = "Flux.framework"
-            BlueprintName = "Flux iOS"
-            ReferencedContainer = "container:Flux.xcodeproj">
+            BlueprintIdentifier = "965BBDB0208B958100AC4ED5"
+            BuildableName = "MaterialX.framework"
+            BlueprintName = "MaterialX macOS"
+            ReferencedContainer = "container:MaterialX.xcodeproj">
          </BuildableReference>
       </MacroExpansion>
       <AdditionalOptions>
@@ -84,10 +84,10 @@
       <MacroExpansion>
          <BuildableReference
             BuildableIdentifier = "primary"
-            BlueprintIdentifier = "964E0B56208B9280001328FF"
-            BuildableName = "Flux.framework"
-            BlueprintName = "Flux iOS"
-            ReferencedContainer = "container:Flux.xcodeproj">
+            BlueprintIdentifier = "965BBDB0208B958100AC4ED5"
+            BuildableName = "MaterialX.framework"
+            BlueprintName = "MaterialX macOS"
+            ReferencedContainer = "container:MaterialX.xcodeproj">
          </BuildableReference>
       </MacroExpansion>
    </ProfileAction>

@@ -28,20 +28,12 @@
  * OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
  */
 
-import XCTest
-@testable import Flux
+#import <CoreData/CoreData.h>
 
-class FluxTests: XCTestCase {
-  override func setUp() {
-    super.setUp()
-  }
-  
-  override func tearDown() {
-    super.tearDown()
-  }
-  
-  func testLocal() {
-    XCTAssertEqual(1, 1)
-  }
-}
+//! Project version number for MaterialX.
+FOUNDATION_EXPORT double MaterialXVersionNumber;
 
+//! Project version string for MaterialX.
+FOUNDATION_EXPORT const unsigned char MaterialXVersionString[];
+
+// In this header, you should import all the public headers of your framework using statements like #import <MaterialX/PublicHeader.h>

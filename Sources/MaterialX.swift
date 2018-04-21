@@ -30,11 +30,11 @@
 
 import CoreData
 
-@objc(FluxDelegate)
-public protocol FluxDelegate {
+@objc(MaterialXDelegate)
+public protocol MaterialXDelegate {
   
 }
 
-@objc(Flux)
-public class Flux: NSObject {
+@objc(MaterialX)
+public class MaterialX: NSObject {
 }
