@@ -32,4 +32,4 @@
 
 import PackageDescription
 
-let package = Package(name: "Flux")
+let package = Package(name: "MaterialX")

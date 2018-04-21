@@ -49,6 +49,7 @@
 		965BBDB9208B958200AC4ED5 /* MaterialX macOS Tests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "MaterialX macOS Tests.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
 		965BBE0A208B9A1200AC4ED5 /* MaterialX.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MaterialX.swift; sourceTree = "<group>"; };
 		965BBE0D208B9B1D00AC4ED5 /* JSON.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = JSON.swift; sourceTree = "<group>"; };
+		96DDF7F5208BA0FC0052E6BB /* Package.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Package.swift; sourceTree = SOURCE_ROOT; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -111,6 +112,7 @@
 				965BBDAB208B955000AC4ED5 /* LICENSE */,
 				964E0B73208B9364001328FF /* Info.plist */,
 				964E0B72208B9364001328FF /* MaterialX.h */,
+				96DDF7F5208BA0FC0052E6BB /* Package.swift */,
 				965BBE0A208B9A1200AC4ED5 /* MaterialX.swift */,
 				965BBE0D208B9B1D00AC4ED5 /* JSON.swift */,
 			);

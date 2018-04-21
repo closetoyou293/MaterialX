@@ -1,4 +1,4 @@
-## Flux
+## Material X
 
 A unidirectional data flow for iOS & macOS.
 
