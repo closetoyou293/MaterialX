@@ -28,20 +28,13 @@
  * OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
  */
 
-import XCTest
-@testable import Flux
+import CoreData
 
-class FluxTests: XCTestCase {
-  override func setUp() {
-    super.setUp()
-  }
+@objc(FluxDelegate)
+public protocol FluxDelegate {
   
-  override func tearDown() {
-    super.tearDown()
-  }
-  
-  func testLocal() {
-    XCTAssertEqual(1, 1)
-  }
 }
 
+@objc(Flux)
+public class Flux: NSObject {
+}
