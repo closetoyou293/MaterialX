@@ -39,7 +39,7 @@ public struct StoreDescription {
   
   /// URL reference to where the MaterialX datastore will live.
   static var location: URL {
-    return File.path(.applicationSupportDirectory, path: "CosmicMind/MaterialX/")!
+    return File.path(.applicationSupportDirectory, path: "com.cosmicmind.materialx/")!
   }
 }
 

@@ -32,146 +32,146 @@ import XCTest
 @testable import MaterialX
 
 class EntityThreadTests : XCTestCase, WatchEntityDelegate {
-    var insertSaveExpectation: XCTestExpectation?
-    var insertExpectation: XCTestExpectation?
-    var insertPropertyExpectation: XCTestExpectation?
-    var insertTagExpectation: XCTestExpectation?
-    var updateSaveExpectation: XCTestExpectation?
-    var updatePropertyExpectation: XCTestExpectation?
-    var deleteSaveExpectation: XCTestExpectation?
-    var deleteExpectation: XCTestExpectation?
-    var deletePropertyExpectation: XCTestExpectation?
-    var deleteTagExpectation: XCTestExpectation?
+  var insertSaveExpectation: XCTestExpectation?
+  var insertExpectation: XCTestExpectation?
+  var insertPropertyExpectation: XCTestExpectation?
+  var insertTagExpectation: XCTestExpectation?
+  var updateSaveExpectation: XCTestExpectation?
+  var updatePropertyExpectation: XCTestExpectation?
+  var deleteSaveExpectation: XCTestExpectation?
+  var deleteExpectation: XCTestExpectation?
+  var deletePropertyExpectation: XCTestExpectation?
+  var deleteTagExpectation: XCTestExpectation?
+  
+  override func setUp() {
+    super.setUp()
+  }
+  
+  override func tearDown() {
+    super.tearDown()
+  }
+  
+  func testAll() {
+    insertSaveExpectation = expectation(description: "Test: Save did not pass.")
+    insertExpectation = expectation(description: "Test: Insert did not pass.")
+    insertPropertyExpectation = expectation(description: "Test: Insert property did not pass.")
+    insertTagExpectation = expectation(description: "Test: Insert tag did not pass.")
     
-    override func setUp() {
-        super.setUp()
+    let q1 = DispatchQueue(label: "com.cosmicmind.graph.thread.1", attributes: .concurrent)
+    let q2 = DispatchQueue(label: "com.cosmicmind.graph.thread.2", attributes: .concurrent)
+    let q3 = DispatchQueue(label: "com.cosmicmind.graph.thread.3", attributes: .concurrent)
+    
+    let graph = MaterialX()
+    let watch = Watch<Entity>(graph: graph).for(types: "T").has(tags: "G").where(properties: "P")
+    watch.delegate = self
+    
+    let entity = Entity(type: "T")
+    
+    q1.async { [weak self] in
+      entity["P"] = 111
+      entity.add(tags: "G")
+      
+      graph.async { [weak self] (success, error) in
+        XCTAssertTrue(success, "\(String(describing: error))")
+        self?.insertSaveExpectation?.fulfill()
+      }
     }
     
-    override func tearDown() {
-        super.tearDown()
+    waitForExpectations(timeout: 5, handler: nil)
+    
+    updateSaveExpectation = expectation(description: "Test: Save did not pass.")
+    updatePropertyExpectation = expectation(description: "Test: Update did not pass.")
+    
+    q2.async { [weak self] in
+      entity["P"] = 222
+      
+      graph.async { [weak self] (success, error) in
+        XCTAssertTrue(success, "\(String(describing: error))")
+        self?.updateSaveExpectation?.fulfill()
+      }
     }
     
-    func testAll() {
-        insertSaveExpectation = expectation(description: "Test: Save did not pass.")
-        insertExpectation = expectation(description: "Test: Insert did not pass.")
-        insertPropertyExpectation = expectation(description: "Test: Insert property did not pass.")
-        insertTagExpectation = expectation(description: "Test: Insert tag did not pass.")
-        
-        let q1 = DispatchQueue(label: "com.cosmicmind.graph.thread.1", attributes: .concurrent)
-        let q2 = DispatchQueue(label: "com.cosmicmind.graph.thread.2", attributes: .concurrent)
-        let q3 = DispatchQueue(label: "com.cosmicmind.graph.thread.3", attributes: .concurrent)
-        
-        let graph = MaterialX()
-        let watch = Watch<Entity>(graph: graph).for(types: "T").has(tags: "G").where(properties: "P")
-        watch.delegate = self
-        
-        let entity = Entity(type: "T")
-        
-        q1.async { [weak self] in
-            entity["P"] = 111
-            entity.add(tags: "G")
-            
-            graph.async { [weak self] (success, error) in
-                XCTAssertTrue(success, "\(String(describing: error))")
-                self?.insertSaveExpectation?.fulfill()
-            }
-        }
-        
-        waitForExpectations(timeout: 5, handler: nil)
-        
-        updateSaveExpectation = expectation(description: "Test: Save did not pass.")
-        updatePropertyExpectation = expectation(description: "Test: Update did not pass.")
-        
-        q2.async { [weak self] in
-            entity["P"] = 222
-            
-            graph.async { [weak self] (success, error) in
-                XCTAssertTrue(success, "\(String(describing: error))")
-                self?.updateSaveExpectation?.fulfill()
-            }
-        }
-        
-        waitForExpectations(timeout: 5, handler: nil)
-        
-        deleteSaveExpectation = expectation(description: "Test: Save did not pass.")
-        deleteExpectation = expectation(description: "Test: Delete did not pass.")
-        deletePropertyExpectation = expectation(description: "Test: Delete property did not pass.")
-        deleteTagExpectation = expectation(description: "Test: Delete tag did not pass.")
-        
-        q3.async { [weak self] in
-            entity.delete()
-            
-            graph.async { [weak self] (success, error) in
-                XCTAssertTrue(success, "\(String(describing: error))")
-                self?.deleteSaveExpectation?.fulfill()
-            }
-        }
-        
-        waitForExpectations(timeout: 5, handler: nil)
+    waitForExpectations(timeout: 5, handler: nil)
+    
+    deleteSaveExpectation = expectation(description: "Test: Save did not pass.")
+    deleteExpectation = expectation(description: "Test: Delete did not pass.")
+    deletePropertyExpectation = expectation(description: "Test: Delete property did not pass.")
+    deleteTagExpectation = expectation(description: "Test: Delete tag did not pass.")
+    
+    q3.async { [weak self] in
+      entity.delete()
+      
+      graph.async { [weak self] (success, error) in
+        XCTAssertTrue(success, "\(String(describing: error))")
+        self?.deleteSaveExpectation?.fulfill()
+      }
     }
     
-    func watch(graph: MaterialX, inserted entity: Entity, source: MaterialXSource) {
-        XCTAssertEqual("T", entity.type)
-        XCTAssertTrue(0 < entity.id.characters.count)
-        XCTAssertEqual(111, entity["P"] as? Int)
-        XCTAssertTrue(entity.has(tags: "G"))
-        
-        insertExpectation?.fulfill()
-    }
+    waitForExpectations(timeout: 5, handler: nil)
+  }
+  
+  func watch(graph: MaterialX, inserted entity: Entity, source: MaterialXSource) {
+    XCTAssertEqual("T", entity.type)
+    XCTAssertTrue(0 < entity.id.characters.count)
+    XCTAssertEqual(111, entity["P"] as? Int)
+    XCTAssertTrue(entity.has(tags: "G"))
     
-    func watch(graph: MaterialX, deleted entity: Entity, source: MaterialXSource) {
-        XCTAssertEqual("T", entity.type)
-        XCTAssertTrue(0 < entity.id.characters.count)
-        XCTAssertNil(entity["P"])
-        XCTAssertFalse(entity.has(tags: "G"))
-        
-        deleteExpectation?.fulfill()
-    }
+    insertExpectation?.fulfill()
+  }
+  
+  func watch(graph: MaterialX, deleted entity: Entity, source: MaterialXSource) {
+    XCTAssertEqual("T", entity.type)
+    XCTAssertTrue(0 < entity.id.characters.count)
+    XCTAssertNil(entity["P"])
+    XCTAssertFalse(entity.has(tags: "G"))
     
-    func watch(graph: MaterialX, entity: Entity, added tag: String, source: MaterialXSource) {
-        XCTAssertEqual("T", entity.type)
-        XCTAssertEqual("G", tag)
-        XCTAssertTrue(entity.has(tags: tag))
-        
-        insertTagExpectation?.fulfill()
-    }
+    deleteExpectation?.fulfill()
+  }
+  
+  func watch(graph: MaterialX, entity: Entity, added tag: String, source: MaterialXSource) {
+    XCTAssertEqual("T", entity.type)
+    XCTAssertEqual("G", tag)
+    XCTAssertTrue(entity.has(tags: tag))
     
-    func watch(graph: MaterialX, entity: Entity, removed tag: String, source: MaterialXSource) {
-        XCTAssertEqual("T", entity.type)
-        XCTAssertTrue(0 < entity.id.characters.count)
-        XCTAssertEqual("G", tag)
-        XCTAssertFalse(entity.has(tags: "G"))
-        
-        deleteTagExpectation?.fulfill()
-    }
+    insertTagExpectation?.fulfill()
+  }
+  
+  func watch(graph: MaterialX, entity: Entity, removed tag: String, source: MaterialXSource) {
+    XCTAssertEqual("T", entity.type)
+    XCTAssertTrue(0 < entity.id.characters.count)
+    XCTAssertEqual("G", tag)
+    XCTAssertFalse(entity.has(tags: "G"))
     
-    func watch(graph: MaterialX, entity: Entity, added property: String, with value: Any, source: MaterialXSource) {
-        XCTAssertEqual("T", entity.type)
-        XCTAssertTrue(0 < entity.id.characters.count)
-        XCTAssertEqual("P", property)
-        XCTAssertEqual(111, value as? Int)
-        XCTAssertEqual(value as? Int, entity[property] as? Int)
-        
-        insertPropertyExpectation?.fulfill()
-    }
+    deleteTagExpectation?.fulfill()
+  }
+  
+  func watch(graph: MaterialX, entity: Entity, added property: String, with value: Any, source: MaterialXSource) {
+    XCTAssertEqual("T", entity.type)
+    XCTAssertTrue(0 < entity.id.characters.count)
+    XCTAssertEqual("P", property)
+    XCTAssertEqual(111, value as? Int)
+    XCTAssertEqual(value as? Int, entity[property] as? Int)
     
-    func watch(graph: MaterialX, entity: Entity, updated property: String, with value: Any, source: MaterialXSource) {
-        XCTAssertEqual("T", entity.type)
-        XCTAssertTrue(0 < entity.id.characters.count)
-        XCTAssertEqual("P", property)
-        XCTAssertEqual(222, value as? Int)
-        XCTAssertEqual(value as? Int, entity[property] as? Int)
-        
-        updatePropertyExpectation?.fulfill()
-    }
+    insertPropertyExpectation?.fulfill()
+  }
+  
+  func watch(graph: MaterialX, entity: Entity, updated property: String, with value: Any, source: MaterialXSource) {
+    XCTAssertEqual("T", entity.type)
+    XCTAssertTrue(0 < entity.id.characters.count)
+    XCTAssertEqual("P", property)
+    XCTAssertEqual(222, value as? Int)
+    XCTAssertEqual(value as? Int, entity[property] as? Int)
     
-    func watch(graph: MaterialX, entity: Entity, removed property: String, with value: Any, source: MaterialXSource) {
-        XCTAssertEqual("T", entity.type)
-        XCTAssertTrue(0 < entity.id.characters.count)
-        XCTAssertEqual("P", property)
-        XCTAssertEqual(222, value as? Int)
-        XCTAssertNil(entity[property])
-        
-        deletePropertyExpectation?.fulfill()
-    }
+    updatePropertyExpectation?.fulfill()
+  }
+  
+  func watch(graph: MaterialX, entity: Entity, removed property: String, with value: Any, source: MaterialXSource) {
+    XCTAssertEqual("T", entity.type)
+    XCTAssertTrue(0 < entity.id.characters.count)
+    XCTAssertEqual("P", property)
+    XCTAssertEqual(222, value as? Int)
+    XCTAssertNil(entity[property])
+    
+    deletePropertyExpectation?.fulfill()
+  }
 }

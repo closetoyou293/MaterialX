@@ -67,8 +67,6 @@
 		96DDF852208BE3D00052E6BB /* EntitySearchTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 96DDF845208BE3D00052E6BB /* EntitySearchTests.swift */; };
 		96DDF853208BE3D00052E6BB /* EntityGroupTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 96DDF846208BE3D00052E6BB /* EntityGroupTests.swift */; };
 		96DDF854208BE3D00052E6BB /* EntityGroupTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 96DDF846208BE3D00052E6BB /* EntityGroupTests.swift */; };
-		96DDF855208BE3D00052E6BB /* GraphTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 96DDF847208BE3D00052E6BB /* GraphTests.swift */; };
-		96DDF856208BE3D00052E6BB /* GraphTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 96DDF847208BE3D00052E6BB /* GraphTests.swift */; };
 		96DDF857208BE3D00052E6BB /* EntityThreadTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 96DDF848208BE3D00052E6BB /* EntityThreadTests.swift */; };
 		96DDF858208BE3D00052E6BB /* EntityThreadTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 96DDF848208BE3D00052E6BB /* EntityThreadTests.swift */; };
 /* End PBXBuildFile section */
@@ -128,7 +126,6 @@
 		96DDF844208BE3D00052E6BB /* EntityPropertyTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EntityPropertyTests.swift; sourceTree = "<group>"; };
 		96DDF845208BE3D00052E6BB /* EntitySearchTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EntitySearchTests.swift; sourceTree = "<group>"; };
 		96DDF846208BE3D00052E6BB /* EntityGroupTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EntityGroupTests.swift; sourceTree = "<group>"; };
-		96DDF847208BE3D00052E6BB /* GraphTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GraphTests.swift; sourceTree = "<group>"; };
 		96DDF848208BE3D00052E6BB /* EntityThreadTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EntityThreadTests.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -230,7 +227,6 @@
 				96DDF841208BE3D00052E6BB /* EntityTagTests.swift */,
 				96DDF842208BE3D00052E6BB /* EntityTests.swift */,
 				96DDF848208BE3D00052E6BB /* EntityThreadTests.swift */,
-				96DDF847208BE3D00052E6BB /* GraphTests.swift */,
 			);
 			path = Tests;
 			sourceTree = "<group>";
@@ -445,7 +441,6 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				96DDF855208BE3D00052E6BB /* GraphTests.swift in Sources */,
 				96DDF84F208BE3D00052E6BB /* EntityPropertyTests.swift in Sources */,
 				964E0B79208B9371001328FF /* MaterialXTests.swift in Sources */,
 				96DDF84B208BE3D00052E6BB /* EntityTests.swift in Sources */,
@@ -496,7 +491,6 @@
 				96DDF850208BE3D00052E6BB /* EntityPropertyTests.swift in Sources */,
 				96DDF84E208BE3D00052E6BB /* EntityPropertyStressTests.swift in Sources */,
 				96DDF84A208BE3D00052E6BB /* EntityTagTests.swift in Sources */,
-				96DDF856208BE3D00052E6BB /* GraphTests.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -565,7 +559,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 11.2;
+				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
 				MTL_ENABLE_DEBUG_INFO = YES;
 				ONLY_ACTIVE_ARCH = YES;
 				SDKROOT = iphoneos;
@@ -619,7 +613,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 11.2;
+				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
 				MTL_ENABLE_DEBUG_INFO = NO;
 				SDKROOT = iphoneos;
 				SWIFT_OPTIMIZATION_LEVEL = "-Owholemodule";

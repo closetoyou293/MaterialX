@@ -32,225 +32,225 @@ import XCTest
 @testable import MaterialX
 
 class EntityTests: XCTestCase, WatchEntityDelegate {
-    var saveExpectation: XCTestExpectation?
-    var delegateExpectation: XCTestExpectation?
-    var tagExpception: XCTestExpectation?
-    var propertyExpception: XCTestExpectation?
+  var saveExpectation: XCTestExpectation?
+  var delegateExpectation: XCTestExpectation?
+  var tagExpception: XCTestExpectation?
+  var propertyExpception: XCTestExpectation?
+  
+  override func setUp() {
+    super.setUp()
+  }
+  
+  override func tearDown() {
+    super.tearDown()
+  }
+  
+  func testDefaultMaterialX() {
+    saveExpectation = expectation(description: "[EntityTests Error: Save test failed.]")
+    delegateExpectation = expectation(description: "[EntityTests Error: Delegate test failed.]")
+    tagExpception = expectation(description: "[EntityTests Error: Tag test failed.]")
+    propertyExpception = expectation(description: "[EntityTests Error: Property test failed.]")
     
-    override func setUp() {
-        super.setUp()
+    let graph = MaterialX()
+    let watch = Watch<Entity>(graph: graph).for(types: "T").has(tags: "G").where(properties: "P")
+    watch.delegate = self
+    
+    let entity = Entity(type: "T")
+    entity["P"] = "V"
+    entity.add(tags: "G")
+    
+    XCTAssertEqual("V", entity["P"] as? String)
+    
+    graph.async { [weak self] (success, error) in
+      XCTAssertTrue(success)
+      XCTAssertNil(error)
+      self?.saveExpectation?.fulfill()
     }
     
-    override func tearDown() {
-        super.tearDown()
+    waitForExpectations(timeout: 5, handler: nil)
+  }
+  
+  func testNamedMaterialXSave() {
+    saveExpectation = expectation(description: "[EntityTests Error: Save test failed.]")
+    delegateExpectation = expectation(description: "[EntityTests Error: Delegate test failed.]")
+    tagExpception = expectation(description: "[EntityTests Error: Tag test failed.]")
+    propertyExpception = expectation(description: "[EntityTests Error: Property test failed.]")
+    
+    let graph = MaterialX(name: "EntityTests-testNamedMaterialXSave")
+    let watch = Watch<Entity>(graph: graph).for(types: "T").has(tags: "G").where(properties: "P")
+    watch.delegate = self
+    
+    let entity = Entity(type: "T", graph: "EntityTests-testNamedMaterialXSave")
+    entity["P"] = "V"
+    entity.add(tags: "G")
+    
+    XCTAssertEqual("V", entity["P"] as? String)
+    
+    graph.async { [weak self] (success, error) in
+      XCTAssertTrue(success)
+      XCTAssertNil(error)
+      self?.saveExpectation?.fulfill()
     }
     
-    func testDefaultMaterialX() {
-        saveExpectation = expectation(description: "[EntityTests Error: Save test failed.]")
-        delegateExpectation = expectation(description: "[EntityTests Error: Delegate test failed.]")
-        tagExpception = expectation(description: "[EntityTests Error: Tag test failed.]")
-        propertyExpception = expectation(description: "[EntityTests Error: Property test failed.]")
-        
-        let graph = MaterialX()
-        let watch = Watch<Entity>(graph: graph).for(types: "T").has(tags: "G").where(properties: "P")
-        watch.delegate = self
-        
-        let entity = Entity(type: "T")
-        entity["P"] = "V"
-        entity.add(tags: "G")
-        
-        XCTAssertEqual("V", entity["P"] as? String)
-        
-        graph.async { [weak self] (success, error) in
-            XCTAssertTrue(success)
-            XCTAssertNil(error)
-            self?.saveExpectation?.fulfill()
-        }
-        
-        waitForExpectations(timeout: 5, handler: nil)
+    waitForExpectations(timeout: 5, handler: nil)
+  }
+  
+  func testReferenceMaterialXSave() {
+    saveExpectation = expectation(description: "[EntityTests Error: Save test failed.]")
+    delegateExpectation = expectation(description: "[EntityTests Error: Delegate test failed.]")
+    tagExpception = expectation(description: "[EntityTests Error: Tag test failed.]")
+    propertyExpception = expectation(description: "[EntityTests Error: Property test failed.]")
+    
+    let graph = MaterialX(name: "EntityTests-testReferenceMaterialXSave")
+    let watch = Watch<Entity>(graph: graph).for(types: "T").has(tags: "G").where(properties: "P")
+    watch.delegate = self
+    
+    let entity = Entity(type: "T", graph: graph)
+    entity["P"] = "V"
+    entity.add(tags: "G")
+    
+    XCTAssertEqual("V", entity["P"] as? String)
+    
+    DispatchQueue.global(qos: .background).async { [weak self] in
+      graph.async { [weak self] (success, error) in
+        XCTAssertTrue(success)
+        XCTAssertNil(error)
+        self?.saveExpectation?.fulfill()
+      }
     }
     
-    func testNamedMaterialXSave() {
-        saveExpectation = expectation(description: "[EntityTests Error: Save test failed.]")
-        delegateExpectation = expectation(description: "[EntityTests Error: Delegate test failed.]")
-        tagExpception = expectation(description: "[EntityTests Error: Tag test failed.]")
-        propertyExpception = expectation(description: "[EntityTests Error: Property test failed.]")
-        
-        let graph = MaterialX(name: "EntityTests-testNamedMaterialXSave")
-        let watch = Watch<Entity>(graph: graph).for(types: "T").has(tags: "G").where(properties: "P")
-        watch.delegate = self
-        
-        let entity = Entity(type: "T", graph: "EntityTests-testNamedMaterialXSave")
-        entity["P"] = "V"
-        entity.add(tags: "G")
-        
-        XCTAssertEqual("V", entity["P"] as? String)
-        
-        graph.async { [weak self] (success, error) in
-            XCTAssertTrue(success)
-            XCTAssertNil(error)
-            self?.saveExpectation?.fulfill()
-        }
-        
-        waitForExpectations(timeout: 5, handler: nil)
+    waitForExpectations(timeout: 5, handler: nil)
+  }
+  
+  func testAsyncMaterialXSave() {
+    saveExpectation = expectation(description: "[EntityTests Error: Save test failed.]")
+    delegateExpectation = expectation(description: "[EntityTests Error: Delegate test failed.]")
+    tagExpception = expectation(description: "[EntityTests Error: Tag test failed.]")
+    propertyExpception = expectation(description: "[EntityTests Error: Property test failed.]")
+    
+    let graph = MaterialX(name: "EntityTests-testAsyncMaterialXSave")
+    let watch = Watch<Entity>(graph: graph).for(types: "T").has(tags: "G").where(properties: "P")
+    watch.delegate = self
+    
+    let entity = Entity(type: "T", graph: graph)
+    entity["P"] = "V"
+    entity.add(tags: "G")
+    
+    XCTAssertEqual("V", entity["P"] as? String)
+    
+    DispatchQueue.global(qos: .background).async { [weak self] in
+      graph.async { [weak self] (success, error) in
+        XCTAssertTrue(success)
+        XCTAssertNil(error)
+        self?.saveExpectation?.fulfill()
+      }
     }
     
-    func testReferenceMaterialXSave() {
-        saveExpectation = expectation(description: "[EntityTests Error: Save test failed.]")
-        delegateExpectation = expectation(description: "[EntityTests Error: Delegate test failed.]")
-        tagExpception = expectation(description: "[EntityTests Error: Tag test failed.]")
-        propertyExpception = expectation(description: "[EntityTests Error: Property test failed.]")
-        
-        let graph = MaterialX(name: "EntityTests-testReferenceMaterialXSave")
-        let watch = Watch<Entity>(graph: graph).for(types: "T").has(tags: "G").where(properties: "P")
-        watch.delegate = self
-        
-        let entity = Entity(type: "T", graph: graph)
-        entity["P"] = "V"
-        entity.add(tags: "G")
-        
-        XCTAssertEqual("V", entity["P"] as? String)
-        
-        DispatchQueue.global(qos: .background).async { [weak self] in
-            graph.async { [weak self] (success, error) in
-                XCTAssertTrue(success)
-                XCTAssertNil(error)
-                self?.saveExpectation?.fulfill()
-            }
-        }
-        
-        waitForExpectations(timeout: 5, handler: nil)
+    waitForExpectations(timeout: 5, handler: nil)
+  }
+  
+  func testAsyncMaterialXDelete() {
+    saveExpectation = expectation(description: "[EntityTests Error: Save test failed.]")
+    delegateExpectation = expectation(description: "[EntityTests Error: Delegate test failed.]")
+    tagExpception = expectation(description: "[EntityTests Error: Tag test failed.]")
+    propertyExpception = expectation(description: "[EntityTests Error: Property test failed.]")
+    
+    let graph = MaterialX()
+    let watch = Watch<Entity>(graph: graph).for(types: "T").has(tags: "G").where(properties: "P")
+    watch.delegate = self
+    
+    let entity = Entity(type: "T")
+    entity["P"] = "V"
+    entity.add(tags: "G")
+    
+    XCTAssertEqual("V", entity["P"] as? String)
+    
+    graph.async { [weak self] (success, error) in
+      XCTAssertTrue(success)
+      XCTAssertNil(error)
+      self?.saveExpectation?.fulfill()
     }
     
-    func testAsyncMaterialXSave() {
-        saveExpectation = expectation(description: "[EntityTests Error: Save test failed.]")
-        delegateExpectation = expectation(description: "[EntityTests Error: Delegate test failed.]")
-        tagExpception = expectation(description: "[EntityTests Error: Tag test failed.]")
-        propertyExpception = expectation(description: "[EntityTests Error: Property test failed.]")
-        
-        let graph = MaterialX(name: "EntityTests-testAsyncMaterialXSave")
-        let watch = Watch<Entity>(graph: graph).for(types: "T").has(tags: "G").where(properties: "P")
-        watch.delegate = self
-        
-        let entity = Entity(type: "T", graph: graph)
-        entity["P"] = "V"
-        entity.add(tags: "G")
-        
-        XCTAssertEqual("V", entity["P"] as? String)
-        
-        DispatchQueue.global(qos: .background).async { [weak self] in
-            graph.async { [weak self] (success, error) in
-                XCTAssertTrue(success)
-                XCTAssertNil(error)
-                self?.saveExpectation?.fulfill()
-            }
-        }
-        
-        waitForExpectations(timeout: 5, handler: nil)
+    waitForExpectations(timeout: 5, handler: nil)
+    
+    entity.delete()
+    
+    saveExpectation = expectation(description: "[EntityTests Error: Save test failed.]")
+    delegateExpectation = expectation(description: "[EntityTests Error: Delegate test failed.]")
+    tagExpception = expectation(description: "[EntityTests Error: Tag test failed.]")
+    propertyExpception = expectation(description: "[EntityTests Error: Property test failed.]")
+    
+    graph.async { [weak self] (success, error) in
+      XCTAssertTrue(success)
+      self?.saveExpectation?.fulfill()
     }
     
-    func testAsyncMaterialXDelete() {
-        saveExpectation = expectation(description: "[EntityTests Error: Save test failed.]")
-        delegateExpectation = expectation(description: "[EntityTests Error: Delegate test failed.]")
-        tagExpception = expectation(description: "[EntityTests Error: Tag test failed.]")
-        propertyExpception = expectation(description: "[EntityTests Error: Property test failed.]")
-        
-        let graph = MaterialX()
-        let watch = Watch<Entity>(graph: graph).for(types: "T").has(tags: "G").where(properties: "P")
-        watch.delegate = self
-        
-        let entity = Entity(type: "T")
-        entity["P"] = "V"
-        entity.add(tags: "G")
-        
-        XCTAssertEqual("V", entity["P"] as? String)
-        
-        graph.async { [weak self] (success, error) in
-            XCTAssertTrue(success)
-            XCTAssertNil(error)
-            self?.saveExpectation?.fulfill()
-        }
-        
-        waitForExpectations(timeout: 5, handler: nil)
-        
-        entity.delete()
-        
-        saveExpectation = expectation(description: "[EntityTests Error: Save test failed.]")
-        delegateExpectation = expectation(description: "[EntityTests Error: Delegate test failed.]")
-        tagExpception = expectation(description: "[EntityTests Error: Tag test failed.]")
-        propertyExpception = expectation(description: "[EntityTests Error: Property test failed.]")
-        
-        graph.async { [weak self] (success, error) in
-            XCTAssertTrue(success)
-            self?.saveExpectation?.fulfill()
-        }
-        
-        waitForExpectations(timeout: 5, handler: nil)
-    }
+    waitForExpectations(timeout: 5, handler: nil)
+  }
+  
+  func watch(graph: MaterialX, inserted entity: Entity, source: MaterialXSource) {
+    XCTAssertTrue("T" == entity.type)
+    XCTAssertTrue(0 < entity.id.characters.count)
+    XCTAssertEqual("V", entity["P"] as? String)
+    XCTAssertTrue(entity.has(tags: "G"))
     
-    func watch(graph: MaterialX, inserted entity: Entity, source: MaterialXSource) {
-        XCTAssertTrue("T" == entity.type)
-        XCTAssertTrue(0 < entity.id.characters.count)
-        XCTAssertEqual("V", entity["P"] as? String)
-        XCTAssertTrue(entity.has(tags: "G"))
-        
-        delegateExpectation?.fulfill()
-    }
+    delegateExpectation?.fulfill()
+  }
+  
+  func watch(graph: MaterialX, deleted entity: Entity, source: MaterialXSource) {
+    XCTAssertTrue("T" == entity.type)
+    XCTAssertTrue(0 < entity.id.characters.count)
+    XCTAssertNil(entity["P"])
+    XCTAssertFalse(entity.has(tags: "G"))
     
-    func watch(graph: MaterialX, deleted entity: Entity, source: MaterialXSource) {
-        XCTAssertTrue("T" == entity.type)
-        XCTAssertTrue(0 < entity.id.characters.count)
-        XCTAssertNil(entity["P"])
-        XCTAssertFalse(entity.has(tags: "G"))
-        
-        delegateExpectation?.fulfill()
-    }
+    delegateExpectation?.fulfill()
+  }
+  
+  func watch(graph: MaterialX, entity: Entity, added tag: String, source: MaterialXSource) {
+    XCTAssertTrue("T" == entity.type)
+    XCTAssertTrue(0 < entity.id.characters.count)
+    XCTAssertEqual("G", tag)
+    XCTAssertTrue(entity.has(tags: tag))
     
-    func watch(graph: MaterialX, entity: Entity, added tag: String, source: MaterialXSource) {
-        XCTAssertTrue("T" == entity.type)
-        XCTAssertTrue(0 < entity.id.characters.count)
-        XCTAssertEqual("G", tag)
-        XCTAssertTrue(entity.has(tags: tag))
-        
-        tagExpception?.fulfill()
-    }
+    tagExpception?.fulfill()
+  }
+  
+  func watch(graph: MaterialX, entity: Entity, removed tag: String, source: MaterialXSource) {
+    XCTAssertTrue("T" == entity.type)
+    XCTAssertTrue(0 < entity.id.characters.count)
+    XCTAssertEqual("G", tag)
+    XCTAssertFalse(entity.has(tags: tag))
     
-    func watch(graph: MaterialX, entity: Entity, removed tag: String, source: MaterialXSource) {
-        XCTAssertTrue("T" == entity.type)
-        XCTAssertTrue(0 < entity.id.characters.count)
-        XCTAssertEqual("G", tag)
-        XCTAssertFalse(entity.has(tags: tag))
-        
-        tagExpception?.fulfill()
-    }
+    tagExpception?.fulfill()
+  }
+  
+  func watch(graph: MaterialX, entity: Entity, added property: String, with value: Any, source: MaterialXSource) {
+    XCTAssertTrue("T" == entity.type)
+    XCTAssertTrue(0 < entity.id.characters.count)
+    XCTAssertEqual("P", property)
+    XCTAssertEqual("V", value as? String)
+    XCTAssertEqual(value as? String, entity[property] as? String)
     
-    func watch(graph: MaterialX, entity: Entity, added property: String, with value: Any, source: MaterialXSource) {
-        XCTAssertTrue("T" == entity.type)
-        XCTAssertTrue(0 < entity.id.characters.count)
-        XCTAssertEqual("P", property)
-        XCTAssertEqual("V", value as? String)
-        XCTAssertEqual(value as? String, entity[property] as? String)
-        
-        propertyExpception?.fulfill()
-    }
+    propertyExpception?.fulfill()
+  }
+  
+  func watch(graph: MaterialX, entity: Entity, updated property: String, with value: Any, source: MaterialXSource) {
+    XCTAssertTrue("T" == entity.type)
+    XCTAssertTrue(0 < entity.id.characters.count)
+    XCTAssertEqual("P", property)
+    XCTAssertEqual("V", value as? String)
+    XCTAssertEqual(value as? String, entity[property] as? String)
     
-    func watch(graph: MaterialX, entity: Entity, updated property: String, with value: Any, source: MaterialXSource) {
-        XCTAssertTrue("T" == entity.type)
-        XCTAssertTrue(0 < entity.id.characters.count)
-        XCTAssertEqual("P", property)
-        XCTAssertEqual("V", value as? String)
-        XCTAssertEqual(value as? String, entity[property] as? String)
-        
-        propertyExpception?.fulfill()
-    }
+    propertyExpception?.fulfill()
+  }
+  
+  func watch(graph: MaterialX, entity: Entity, removed property: String, with value: Any, source: MaterialXSource) {
+    XCTAssertTrue("T" == entity.type)
+    XCTAssertTrue(0 < entity.id.characters.count)
+    XCTAssertEqual("P", property)
+    XCTAssertEqual("V", value as? String)
+    XCTAssertNil(entity["P"])
     
-    func watch(graph: MaterialX, entity: Entity, removed property: String, with value: Any, source: MaterialXSource) {
-        XCTAssertTrue("T" == entity.type)
-        XCTAssertTrue(0 < entity.id.characters.count)
-        XCTAssertEqual("P", property)
-        XCTAssertEqual("V", value as? String)
-        XCTAssertNil(entity["P"])
-        
-        propertyExpception?.fulfill()
-    }
+    propertyExpception?.fulfill()
+  }
 }

@@ -32,6 +32,8 @@ import XCTest
 @testable import MaterialX
 
 class MaterialXTests: XCTestCase {
+  var graphExpectation: XCTestExpectation?
+  
   override func setUp() {
     super.setUp()
   }
@@ -41,7 +43,78 @@ class MaterialXTests: XCTestCase {
   }
   
   func testLocal() {
-    XCTAssertEqual(1, 1)
+    let g1 = MaterialX()
+    XCTAssertTrue(g1.managedObjectContext.isKind(of: NSManagedObjectContext.self))
+    XCTAssertEqual(StoreDescription.name, g1.name)
+    XCTAssertEqual(StoreDescription.type, g1.type)
+    
+    let g2 = MaterialX(name: "marketing")
+    XCTAssertTrue(g2.managedObjectContext.isKind(of: NSManagedObjectContext.self))
+    XCTAssertEqual("marketing", g2.name)
+    XCTAssertEqual(StoreDescription.type, g2.type)
+    
+    graphExpectation = expectation(description: "[MaterialXTests Error: Async tests failed.]")
+    
+    var g3: MaterialX!
+    DispatchQueue.global(qos: .background).async { [weak self] in
+      g3 = MaterialX(name: "async")
+      XCTAssertTrue(g3.managedObjectContext.isKind(of: NSManagedObjectContext.self))
+      XCTAssertEqual("async", g3.name)
+      XCTAssertEqual(StoreDescription.type, g3.type)
+      self?.graphExpectation?.fulfill()
+    }
+    
+    waitForExpectations(timeout: 5, handler: nil)
+    
+    XCTAssertTrue(g3.managedObjectContext.isKind(of: NSManagedObjectContext.self))
+    XCTAssertEqual("async", g3.name)
+    XCTAssertEqual(StoreDescription.type, g3.type)
+  }
+  
+  func testCloud() {
+    graphExpectation = expectation(description: "[CloudTests Error: Async tests failed.]")
+    
+    let g1 = MaterialX(cloud: "marketing") { [weak self] (supported: Bool, error: Error?) in
+      XCTAssertTrue(supported)
+      XCTAssertNil(error)
+      self?.graphExpectation?.fulfill()
+    }
+    
+    waitForExpectations(timeout: 5, handler: nil)
+    
+    XCTAssertTrue(g1.managedObjectContext.isKind(of: NSManagedObjectContext.self))
+    XCTAssertEqual("marketing", g1.name)
+    XCTAssertEqual(StoreDescription.type, g1.type)
+    
+    graphExpectation = expectation(description: "[CloudTests Error: Async tests failed.]")
+    
+    let g2 = MaterialX(cloud: "async") { [weak self] (supported: Bool, error: Error?) in
+      XCTAssertTrue(supported)
+      XCTAssertNil(error)
+      self?.graphExpectation?.fulfill()
+    }
+    
+    waitForExpectations(timeout: 5, handler: nil)
+    
+    XCTAssertTrue(g2.managedObjectContext.isKind(of: NSManagedObjectContext.self))
+    XCTAssertEqual("async", g2.name)
+    XCTAssertEqual(StoreDescription.type, g2.type)
+    
+    graphExpectation = expectation(description: "[CloudTests Error: Async tests failed.]")
+    
+    var g3: MaterialX!
+    DispatchQueue.global(qos: .background).async { [weak self] in
+      g3 = MaterialX(cloud: "test") { [weak self] (supported: Bool, error: Error?) in
+        XCTAssertTrue(supported)
+        XCTAssertNil(error)
+        self?.graphExpectation?.fulfill()
+      }
+    }
+    
+    waitForExpectations(timeout: 5, handler: nil)
+    
+    XCTAssertTrue(g3.managedObjectContext.isKind(of: NSManagedObjectContext.self))
+    XCTAssertEqual("test", g3.name)
+    XCTAssertEqual(StoreDescription.type, g3.type)
   }
 }
-

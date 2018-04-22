@@ -32,133 +32,133 @@ import XCTest
 @testable import MaterialX
 
 class EntityTagTests: XCTestCase, WatchEntityDelegate {
-    var saveExpectation: XCTestExpectation?
+  var saveExpectation: XCTestExpectation?
+  
+  var tagAddExpception: XCTestExpectation?
+  var tagUpdateExpception: XCTestExpectation?
+  var tagRemoveExpception: XCTestExpectation?
+  
+  override func setUp() {
+    super.setUp()
+  }
+  
+  override func tearDown() {
+    super.tearDown()
+  }
+  
+  func testTagAdd() {
+    saveExpectation = expectation(description: "[EntityTests Error: MaterialX save test failed.]")
+    tagAddExpception = expectation(description: "[EntityTests Error: Tag add test failed.]")
     
-    var tagAddExpception: XCTestExpectation?
-    var tagUpdateExpception: XCTestExpectation?
-    var tagRemoveExpception: XCTestExpectation?
+    let graph = MaterialX()
+    let watch = Watch<Entity>(graph: graph).for(types: "T").has(tags: "G1")
+    watch.delegate = self
     
-    override func setUp() {
-        super.setUp()
+    let entity = Entity(type: "T")
+    entity.add(tags: "G1")
+    
+    XCTAssertTrue(entity.has(tags: "G1"))
+    
+    graph.async { [weak self] (success, error) in
+      XCTAssertTrue(success)
+      XCTAssertNil(error)
+      self?.saveExpectation?.fulfill()
     }
     
-    override func tearDown() {
-        super.tearDown()
+    waitForExpectations(timeout: 5, handler: nil)
+  }
+  
+  func testTagUpdate() {
+    saveExpectation = expectation(description: "[EntityTests Error: MaterialX save test failed.]")
+    
+    let graph = MaterialX()
+    
+    let entity = Entity(type: "T")
+    entity.add(tags: "G2")
+    
+    graph.async { [weak self] (success, error) in
+      XCTAssertTrue(success)
+      XCTAssertNil(error)
+      self?.saveExpectation?.fulfill()
     }
     
-    func testTagAdd() {
-        saveExpectation = expectation(description: "[EntityTests Error: MaterialX save test failed.]")
-        tagAddExpception = expectation(description: "[EntityTests Error: Tag add test failed.]")
-        
-        let graph = MaterialX()
-        let watch = Watch<Entity>(graph: graph).for(types: "T").has(tags: "G1")
-        watch.delegate = self
-        
-        let entity = Entity(type: "T")
-        entity.add(tags: "G1")
-        
-        XCTAssertTrue(entity.has(tags: "G1"))
-        
-        graph.async { [weak self] (success, error) in
-            XCTAssertTrue(success)
-            XCTAssertNil(error)
-            self?.saveExpectation?.fulfill()
-        }
-        
-        waitForExpectations(timeout: 5, handler: nil)
+    waitForExpectations(timeout: 5, handler: nil)
+    
+    saveExpectation = expectation(description: "[EntityTests Error: MaterialX save test failed.]")
+    tagAddExpception = expectation(description: "[EntityTests Error: Tag add test failed.]")
+    tagRemoveExpception = expectation(description: "[EntityTests Error: Tag remove test failed.]")
+    
+    let watch = Watch<Entity>(graph: graph).has(tags: "G1", "G2")
+    watch.delegate = self
+    
+    entity.toggle(tags: "G1", "G2")
+    
+    XCTAssertTrue(entity.has(tags: "G1"))
+    XCTAssertFalse(entity.has(tags: "G2"))
+    
+    graph.async { [weak self] (success, error) in
+      XCTAssertTrue(success)
+      XCTAssertNil(error)
+      self?.saveExpectation?.fulfill()
     }
     
-    func testTagUpdate() {
-        saveExpectation = expectation(description: "[EntityTests Error: MaterialX save test failed.]")
-        
-        let graph = MaterialX()
-        
-        let entity = Entity(type: "T")
-        entity.add(tags: "G2")
-        
-        graph.async { [weak self] (success, error) in
-            XCTAssertTrue(success)
-            XCTAssertNil(error)
-            self?.saveExpectation?.fulfill()
-        }
-        
-        waitForExpectations(timeout: 5, handler: nil)
-        
-        saveExpectation = expectation(description: "[EntityTests Error: MaterialX save test failed.]")
-        tagAddExpception = expectation(description: "[EntityTests Error: Tag add test failed.]")
-        tagRemoveExpception = expectation(description: "[EntityTests Error: Tag remove test failed.]")
-        
-        let watch = Watch<Entity>(graph: graph).has(tags: "G1", "G2")
-        watch.delegate = self
-        
-        entity.toggle(tags: "G1", "G2")
-        
-        XCTAssertTrue(entity.has(tags: "G1"))
-        XCTAssertFalse(entity.has(tags: "G2"))
-        
-        graph.async { [weak self] (success, error) in
-            XCTAssertTrue(success)
-            XCTAssertNil(error)
-            self?.saveExpectation?.fulfill()
-        }
-        
-        waitForExpectations(timeout: 5, handler: nil)
+    waitForExpectations(timeout: 5, handler: nil)
+  }
+  
+  func testTagDelete() {
+    saveExpectation = expectation(description: "[EntityTests Error: MaterialX save test failed.]")
+    
+    let graph = MaterialX()
+    
+    let entity = Entity(type: "T")
+    entity.add(tags: "G2")
+    
+    XCTAssertTrue(entity.has(tags: "G2"))
+    
+    graph.async { [weak self] (success, error) in
+      XCTAssertTrue(success)
+      XCTAssertNil(error)
+      self?.saveExpectation?.fulfill()
     }
     
-    func testTagDelete() {
-        saveExpectation = expectation(description: "[EntityTests Error: MaterialX save test failed.]")
-        
-        let graph = MaterialX()
-        
-        let entity = Entity(type: "T")
-        entity.add(tags: "G2")
-        
-        XCTAssertTrue(entity.has(tags: "G2"))
-        
-        graph.async { [weak self] (success, error) in
-            XCTAssertTrue(success)
-            XCTAssertNil(error)
-            self?.saveExpectation?.fulfill()
-        }
-        
-        waitForExpectations(timeout: 5, handler: nil)
-        
-        saveExpectation = expectation(description: "[EntityTests Error: MaterialX save test failed.]")
-        tagRemoveExpception = expectation(description: "[EntityTests Error: Tag remove test failed.]")
-        
-        let watch = Watch<Entity>(graph: graph).has(tags: "G2")
-        watch.delegate = self
-        
-        entity.remove(tags: "G2")
-        
-        XCTAssertFalse(entity.has(tags: "G2"))
-        
-        graph.async { [weak self] (success, error) in
-            XCTAssertTrue(success)
-            XCTAssertNil(error)
-            self?.saveExpectation?.fulfill()
-        }
-        
-        waitForExpectations(timeout: 5, handler: nil)
+    waitForExpectations(timeout: 5, handler: nil)
+    
+    saveExpectation = expectation(description: "[EntityTests Error: MaterialX save test failed.]")
+    tagRemoveExpception = expectation(description: "[EntityTests Error: Tag remove test failed.]")
+    
+    let watch = Watch<Entity>(graph: graph).has(tags: "G2")
+    watch.delegate = self
+    
+    entity.remove(tags: "G2")
+    
+    XCTAssertFalse(entity.has(tags: "G2"))
+    
+    graph.async { [weak self] (success, error) in
+      XCTAssertTrue(success)
+      XCTAssertNil(error)
+      self?.saveExpectation?.fulfill()
     }
     
-    func watch(graph: MaterialX, entity: Entity, added tag: String, source: MaterialXSource) {
-        XCTAssertTrue("T" == entity.type)
-        XCTAssertTrue(0 < entity.id.characters.count)
-        XCTAssertEqual("G1", tag)
-        XCTAssertTrue(entity.has(tags: tag))
-        XCTAssertEqual(1, entity.tags.count)
-        XCTAssertTrue(entity.tags.contains(tag))
-        
-        tagAddExpception?.fulfill()
-    }
+    waitForExpectations(timeout: 5, handler: nil)
+  }
+  
+  func watch(graph: MaterialX, entity: Entity, added tag: String, source: MaterialXSource) {
+    XCTAssertTrue("T" == entity.type)
+    XCTAssertTrue(0 < entity.id.characters.count)
+    XCTAssertEqual("G1", tag)
+    XCTAssertTrue(entity.has(tags: tag))
+    XCTAssertEqual(1, entity.tags.count)
+    XCTAssertTrue(entity.tags.contains(tag))
     
-    func watch(graph: MaterialX, entity: Entity, removed tag: String, source: MaterialXSource) {
-        XCTAssertTrue("T" == entity.type)
-        XCTAssertTrue(0 < entity.id.characters.count)
-        XCTAssertEqual("G2", tag)
-        XCTAssertFalse(entity.has(tags: tag))
-        
-        tagRemoveExpception?.fulfill()
-    }
+    tagAddExpception?.fulfill()
+  }
+  
+  func watch(graph: MaterialX, entity: Entity, removed tag: String, source: MaterialXSource) {
+    XCTAssertTrue("T" == entity.type)
+    XCTAssertTrue(0 < entity.id.characters.count)
+    XCTAssertEqual("G2", tag)
+    XCTAssertFalse(entity.has(tags: tag))
+    
+    tagRemoveExpception?.fulfill()
+  }
 }

@@ -32,133 +32,133 @@ import XCTest
 @testable import MaterialX
 
 class EntityGroupTests: XCTestCase, WatchEntityDelegate {
-    var saveExpectation: XCTestExpectation?
+  var saveExpectation: XCTestExpectation?
+  
+  var tagAddExpception: XCTestExpectation?
+  var tagUpdateExpception: XCTestExpectation?
+  var tagRemoveExpception: XCTestExpectation?
+  
+  override func setUp() {
+    super.setUp()
+  }
+  
+  override func tearDown() {
+    super.tearDown()
+  }
+  
+  func testGroupAdd() {
+    saveExpectation = expectation(description: "[EntityTests Error: MaterialX save test failed.]")
+    tagAddExpception = expectation(description: "[EntityTests Error: Group add test failed.]")
     
-    var tagAddExpception: XCTestExpectation?
-    var tagUpdateExpception: XCTestExpectation?
-    var tagRemoveExpception: XCTestExpectation?
+    let graph = MaterialX()
+    let watch = Watch<Entity>(graph: graph).for(types: "T").member(of: "G1")
+    watch.delegate = self
     
-    override func setUp() {
-        super.setUp()
+    let entity = Entity(type: "T")
+    entity.add(to: "G1")
+    
+    XCTAssertTrue(entity.member(of: "G1"))
+    
+    graph.async { [weak self] (success, error) in
+      XCTAssertTrue(success)
+      XCTAssertNil(error)
+      self?.saveExpectation?.fulfill()
     }
     
-    override func tearDown() {
-        super.tearDown()
+    waitForExpectations(timeout: 5, handler: nil)
+  }
+  
+  func testGroupUpdate() {
+    saveExpectation = expectation(description: "[EntityTests Error: MaterialX save test failed.]")
+    
+    let graph = MaterialX()
+    
+    let entity = Entity(type: "T")
+    entity.add(to: "G2")
+    
+    graph.async { [weak self] (success, error) in
+      XCTAssertTrue(success)
+      XCTAssertNil(error)
+      self?.saveExpectation?.fulfill()
     }
     
-    func testGroupAdd() {
-        saveExpectation = expectation(description: "[EntityTests Error: MaterialX save test failed.]")
-        tagAddExpception = expectation(description: "[EntityTests Error: Group add test failed.]")
-        
-        let graph = MaterialX()
-        let watch = Watch<Entity>(graph: graph).for(types: "T").member(of: "G1")
-        watch.delegate = self
-        
-        let entity = Entity(type: "T")
-        entity.add(to: "G1")
-        
-        XCTAssertTrue(entity.member(of: "G1"))
-        
-        graph.async { [weak self] (success, error) in
-            XCTAssertTrue(success)
-            XCTAssertNil(error)
-            self?.saveExpectation?.fulfill()
-        }
-        
-        waitForExpectations(timeout: 5, handler: nil)
+    waitForExpectations(timeout: 5, handler: nil)
+    
+    saveExpectation = expectation(description: "[EntityTests Error: MaterialX save test failed.]")
+    tagAddExpception = expectation(description: "[EntityTests Error: Group add test failed.]")
+    tagRemoveExpception = expectation(description: "[EntityTests Error: Group remove test failed.]")
+    
+    let watch = Watch<Entity>(graph: graph).member(of: "G1", "G2")
+    watch.delegate = self
+    
+    entity.toggle(groups: "G1", "G2")
+    
+    XCTAssertTrue(entity.member(of: "G1"))
+    XCTAssertFalse(entity.member(of: "G2"))
+    
+    graph.async { [weak self] (success, error) in
+      XCTAssertTrue(success)
+      XCTAssertNil(error)
+      self?.saveExpectation?.fulfill()
     }
     
-    func testGroupUpdate() {
-        saveExpectation = expectation(description: "[EntityTests Error: MaterialX save test failed.]")
-        
-        let graph = MaterialX()
-        
-        let entity = Entity(type: "T")
-        entity.add(to: "G2")
-        
-        graph.async { [weak self] (success, error) in
-            XCTAssertTrue(success)
-            XCTAssertNil(error)
-            self?.saveExpectation?.fulfill()
-        }
-        
-        waitForExpectations(timeout: 5, handler: nil)
-        
-        saveExpectation = expectation(description: "[EntityTests Error: MaterialX save test failed.]")
-        tagAddExpception = expectation(description: "[EntityTests Error: Group add test failed.]")
-        tagRemoveExpception = expectation(description: "[EntityTests Error: Group remove test failed.]")
-        
-        let watch = Watch<Entity>(graph: graph).member(of: "G1", "G2")
-        watch.delegate = self
-        
-        entity.toggle(groups: "G1", "G2")
-        
-        XCTAssertTrue(entity.member(of: "G1"))
-        XCTAssertFalse(entity.member(of: "G2"))
-        
-        graph.async { [weak self] (success, error) in
-            XCTAssertTrue(success)
-            XCTAssertNil(error)
-            self?.saveExpectation?.fulfill()
-        }
-        
-        waitForExpectations(timeout: 5, handler: nil)
+    waitForExpectations(timeout: 5, handler: nil)
+  }
+  
+  func testGroupDelete() {
+    saveExpectation = expectation(description: "[EntityTests Error: MaterialX save test failed.]")
+    
+    let graph = MaterialX()
+    
+    let entity = Entity(type: "T")
+    entity.add(to: "G2")
+    
+    XCTAssertTrue(entity.member(of: "G2"))
+    
+    graph.async { [weak self] (success, error) in
+      XCTAssertTrue(success)
+      XCTAssertNil(error)
+      self?.saveExpectation?.fulfill()
     }
     
-    func testGroupDelete() {
-        saveExpectation = expectation(description: "[EntityTests Error: MaterialX save test failed.]")
-        
-        let graph = MaterialX()
-        
-        let entity = Entity(type: "T")
-        entity.add(to: "G2")
-        
-        XCTAssertTrue(entity.member(of: "G2"))
-        
-        graph.async { [weak self] (success, error) in
-            XCTAssertTrue(success)
-            XCTAssertNil(error)
-            self?.saveExpectation?.fulfill()
-        }
-        
-        waitForExpectations(timeout: 5, handler: nil)
-        
-        saveExpectation = expectation(description: "[EntityTests Error: MaterialX save test failed.]")
-        tagRemoveExpception = expectation(description: "[EntityTests Error: Group remove test failed.]")
-        
-        let watch = Watch<Entity>(graph: graph).member(of: "G2")
-        watch.delegate = self
-        
-        entity.remove(from: "G2")
-        
-        XCTAssertFalse(entity.member(of: "G2"))
-        
-        graph.async { [weak self] (success, error) in
-            XCTAssertTrue(success)
-            XCTAssertNil(error)
-            self?.saveExpectation?.fulfill()
-        }
-        
-        waitForExpectations(timeout: 5, handler: nil)
+    waitForExpectations(timeout: 5, handler: nil)
+    
+    saveExpectation = expectation(description: "[EntityTests Error: MaterialX save test failed.]")
+    tagRemoveExpception = expectation(description: "[EntityTests Error: Group remove test failed.]")
+    
+    let watch = Watch<Entity>(graph: graph).member(of: "G2")
+    watch.delegate = self
+    
+    entity.remove(from: "G2")
+    
+    XCTAssertFalse(entity.member(of: "G2"))
+    
+    graph.async { [weak self] (success, error) in
+      XCTAssertTrue(success)
+      XCTAssertNil(error)
+      self?.saveExpectation?.fulfill()
     }
     
-    func watch(graph: MaterialX, entity: Entity, addedTo group: String, source: MaterialXSource) {
-        XCTAssertTrue("T" == entity.type)
-        XCTAssertTrue(0 < entity.id.characters.count)
-        XCTAssertEqual("G1", group)
-        XCTAssertTrue(entity.member(of: group))
-        XCTAssertEqual(1, entity.groups.count)
-        XCTAssertTrue(entity.groups.contains(group))
-        
-        tagAddExpception?.fulfill()
-    }
+    waitForExpectations(timeout: 5, handler: nil)
+  }
+  
+  func watch(graph: MaterialX, entity: Entity, addedTo group: String, source: MaterialXSource) {
+    XCTAssertTrue("T" == entity.type)
+    XCTAssertTrue(0 < entity.id.characters.count)
+    XCTAssertEqual("G1", group)
+    XCTAssertTrue(entity.member(of: group))
+    XCTAssertEqual(1, entity.groups.count)
+    XCTAssertTrue(entity.groups.contains(group))
     
-    func watch(graph: MaterialX, entity: Entity, removedFrom group: String, source: MaterialXSource) {
-        XCTAssertTrue("T" == entity.type)
-        XCTAssertTrue(0 < entity.id.characters.count)
-        XCTAssertEqual("G2", group)
-        XCTAssertFalse(entity.member(of: group))
-        
-        tagRemoveExpception?.fulfill()
-    }
+    tagAddExpception?.fulfill()
+  }
+  
+  func watch(graph: MaterialX, entity: Entity, removedFrom group: String, source: MaterialXSource) {
+    XCTAssertTrue("T" == entity.type)
+    XCTAssertTrue(0 < entity.id.characters.count)
+    XCTAssertEqual("G2", group)
+    XCTAssertFalse(entity.member(of: group))
+    
+    tagRemoveExpception?.fulfill()
+  }
 }
