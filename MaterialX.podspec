@@ -1,6 +1,7 @@
 Pod::Spec.new do |s|
     s.name = 'MaterialX'
     s.version = '0.0.2'
+    s.swift_version = '4.0'
     s.license = 'BSD-3-Clause'
     s.summary = 'A unidirectional data flow for iOS & macOS.'
     s.homepage = 'http://graphswift.io'
